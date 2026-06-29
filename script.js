@@ -19,6 +19,7 @@ function renderTodos() {
   todos.forEach((todo) => {
     const li = document.createElement("li");
     li.className = `todo-item${todo.completed ? " completed" : ""}`;
+    li.classList.add("inserting");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -38,13 +39,21 @@ function renderTodos() {
     removeButton.type = "button";
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", () => {
-      todos = todos.filter((item) => item.id !== todo.id);
-      updateStorage();
-      renderTodos();
+      li.classList.add("removing");
+      li.addEventListener(
+        "animationend",
+        () => {
+          todos = todos.filter((item) => item.id !== todo.id);
+          updateStorage();
+          renderTodos();
+        },
+        { once: true }
+      );
     });
 
     li.append(checkbox, text, removeButton);
     todoList.appendChild(li);
+    requestAnimationFrame(() => li.classList.remove("inserting"));
   });
 }
 

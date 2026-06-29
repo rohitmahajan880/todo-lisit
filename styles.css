@@ -77,6 +77,15 @@ h1 {
   border-radius: 18px;
   background: #f8fafc;
   border: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: itemFadeIn 220ms ease forwards;
+  transition: background 180ms ease, transform 180ms ease, opacity 180ms ease, border-color 180ms ease;
+}
+
+.todo-item.completed {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
 }
 
 .todo-item.completed .text {
@@ -84,10 +93,36 @@ h1 {
   color: var(--muted);
 }
 
+.todo-item.removing {
+  animation: itemFadeOut 180ms ease forwards;
+}
+
 .todo-item input[type="checkbox"] {
   width: 18px;
   height: 18px;
   accent-color: var(--primary);
+}
+
+@keyframes itemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes itemFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 .text {
