@@ -23,6 +23,45 @@ body {
   padding: 32px 16px;
 }
 
+.navbar {
+  width: min(560px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(209, 213, 219, 0.75);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
 .app-shell {
   width: min(560px, 100%);
   background: var(--surface);
